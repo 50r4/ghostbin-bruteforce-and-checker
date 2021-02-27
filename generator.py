@@ -64,6 +64,5 @@ def check_and_generation(generator_lenght, imtrying):
             img_generator(total_guessed)
             should_i_reset_it = 0
 
-
     f.close()
 check_and_generation(5, links_for_generation)
