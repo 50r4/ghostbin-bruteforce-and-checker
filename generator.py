@@ -3,11 +3,13 @@ import random
 import requests
 import subprocess as sp
 from colorama import init, Fore, Back, Style
+import time
+startTime = time.time()
 init(autoreset=True)
 init(convert=True)
 sp.call('cls', shell=True)
 #resets colorama color at the end of every line
-def id_generator(size=6, chars=string.ascii_lowercase):
+def id_generator(size=6, chars=(string.ascii_lowercase + "1234567890")):
     return ''.join(random.choice(chars) for _ in range(size))
 #generates end of a link it should try
 CYAN = Fore.CYAN #colorma text color
@@ -40,7 +42,9 @@ def img_generator(total_guessed):
     print(CYAN+space+"====================================================================================")
 #generates this text with number of valid links
 img_generator(0) #dont change the zero its used fot the total_guessed counter
-links_for_generation = int(input(Fore.CYAN+"" + "    How many links should i try to guess: "))
+# links_for_generation = int(input(Fore.CYAN+"" + "    How many links should i try to guess: "))
+links_for_generation = 100
+
 #creates the link and checks it
 def check_and_generation(generator_lenght, imtrying):
     global should_i_reset_it
@@ -64,5 +68,8 @@ def check_and_generation(generator_lenght, imtrying):
             img_generator(total_guessed)
             should_i_reset_it = 0
 
+
     f.close()
 check_and_generation(5, links_for_generation)
+executionTime = (time.time() - startTime)
+print('Execution time in seconds: ' + str(executionTime))
